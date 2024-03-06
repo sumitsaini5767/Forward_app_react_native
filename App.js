@@ -1,17 +1,11 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { Provider } from "react-redux";
+import { Store } from "./src/Redux/Store";
 import Routers from "./src/Navigations/Routers";
-import HomeScreen from "./src/Screens/MainScreens/HomeScreen";
 
 export default function App() {
-  return <Routers />;
+  return (
+    <Provider store={Store}>
+      <Routers />
+    </Provider>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "yellow",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
