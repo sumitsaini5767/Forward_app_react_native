@@ -24,8 +24,74 @@ export default function SignUpScreen(props) {
   const [email, setEmail] = useState("");
   const [mobile, setmobile] = useState("");
 
+  const userData = {
+    fname: firstName,
+    lname: lastName,
+    email: email,
+    mobile: mobile,
+  };
+
+  let error = [];
+  let valid = [];
   function checkVaidation() {
-    props.navigation.navigate("OtpScreen");
+    //firstname
+    if (firstName.trim() == "") {
+      error.push("Firstname Required ❌");
+    } else if (firstName.length < 3) {
+      error.push("Firstname must be of three character atleaset ❌");
+    } else if (!firstName.match(/^[A-Za-z]+$/)) {
+      error.push("Firstname must be alphabets ❌");
+    } else {
+      valid.push("Firstname ✅");
+    }
+
+    //Lastname
+    if (lastName.trim() == "") {
+      error.push("Lastname Required ❌");
+    } else if (lastName.length < 3) {
+      error.push("Lastname must be of three character atleaset ❌");
+    } else if (!lastName.match(/^[A-Za-z]+$/)) {
+      error.push("Lastname must be alphabets ❌");
+    } else {
+      valid.push("Lastname ✅");
+    }
+
+    //email
+    if (email.trim() == "") {
+      error.push("Email Required ❌");
+    } else if (email.length < 5) {
+      error.push("Email must be of five character atleaset ❌");
+    } else if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      error.push("Email must be alphabets ❌");
+    } else {
+      valid.push("Email ✅");
+    }
+
+    //mobile
+    if (mobile.trim() == "") {
+      error.push("Mobile number Required ❌");
+    } else if (mobile.length !== 10) {
+      error.push("Mobile number must be of 10 character ❌");
+    } else if (!mobile.match(/^\d+$/)) {
+      error.push("Mobile number can only contain numbers ❌");
+    } else {
+      valid.push("Mobile number ✅");
+    }
+
+    if (error.length != 0) {
+      let gap = "";
+      if (valid.length != 0) {
+        gap = "\n\n";
+      }
+      alert(`${valid.join("\n\n")}${gap}${error.join("\n\n")}`);
+      error.length = 0;
+    } else {
+      // alert(
+      //   `Firstname: ${fName}\n\nLastname: ${lName}\n\nUsername: ${userName}\n\nEmail: ${email}`
+      // );
+      alert(`Signup Successfully ✅`);
+      props.navigation.navigate("OtpScreen", userData);
+    }
   }
   function changeNavigation() {
     props.navigation.navigate("PreLoginScreen");

@@ -25,6 +25,10 @@ export default function LoginScreen(props) {
   const [mobile, setmobile] = useState("");
   const [password, setPassword] = useState("");
 
+  function goBack() {
+    props.navigation.navigate("PreLoginScreen");
+  }
+
   function changeNavigation() {
     setPassword("");
     setmobile("");
@@ -79,7 +83,7 @@ export default function LoginScreen(props) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <BackBtn onPress={changeNavigation} />
+        <BackBtn onPress={goBack} />
         <View style={styles.HeadingContainer}>
           <Heading
             title={"Welcome back!"}

@@ -29,7 +29,7 @@ export default function ProfileScreen(props) {
           <Text style={styles.txt}>Change Password</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={logOutHandle()}>
+      <TouchableOpacity onPress={logOutHandle}>
         <View style={styles.editProfileContainer}>
           <Image style={styles.Icon} source={ImagePath.LogoutIcon} />
           <Text style={styles.txt}>Signout</Text>

@@ -15,6 +15,8 @@ import Colors from "../../Styles/Colors";
 import Size from "../../Styles/Size";
 import Heading from "../../Components/Heading";
 import LocationItem from "../../Components/LocationItem";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 export default function DeviceLocationSreen(props) {
   const [data, setData] = useState([
@@ -40,8 +42,19 @@ export default function DeviceLocationSreen(props) {
     { val: "Sector 70, Chandigarh" },
   ]);
 
+  console.log(`userData is: ${JSON.stringify(props.route.params)}`);
+
   function checkVaidation() {
-    props.navigation.navigate("LoginScreen");
+    //submit data to the database
+    setDoc(doc(db, "users", props.route.params.mobile), props.route.params)
+      .then(() => {
+        alert("Signup Successfully");
+        //navigation to login page after successful submition
+        props.navigation.navigate("LoginScreen");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

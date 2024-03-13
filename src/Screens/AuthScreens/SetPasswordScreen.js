@@ -23,8 +23,10 @@ export default function SetPasswordScreen(props) {
   const [password, setPassword] = useState("");
   const [cpassword, setCPassword] = useState("");
 
+  const userData = { ...props.route.params, password: password };
+
   function checkVaidation() {
-    props.navigation.navigate("DeviceLocationSreen");
+    props.navigation.navigate("DeviceLocationSreen", userData);
   }
 
   function changeNavigation() {

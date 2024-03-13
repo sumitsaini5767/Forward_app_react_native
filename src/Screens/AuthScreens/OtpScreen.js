@@ -18,7 +18,7 @@ import BackBtn from "../../Components/BackBtn";
 
 export default function OtpScreen(props) {
   function checkVaidation() {
-    props.navigation.navigate("SetPasswordScreen");
+    props.navigation.navigate("SetPasswordScreen", props.route.params);
   }
   function changeNavigation() {
     props.navigation.navigate("SignUpScreen");
